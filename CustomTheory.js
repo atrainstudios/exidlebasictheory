@@ -1,0 +1,146 @@
+﻿import { ExponentialCost, FreeCost, LinearCost } from "./api/Costs";
+import { Localization } from "./api/Localization";
+import { BigNumber } from "./api/BigNumber";
+import { theory } from "./api/Theory";
+import { Utils } from "./api/Utils";
+
+var id = "ouo";
+var name = "Basic Theory";
+var description = "This theory leads to a beautiful conclusion and is based off of the basic starter theory you get when making custom theories. It has a LOT of story chapters but you'll be satisfied in the end :) ouo.";
+var authors = "invalid-user#2123";
+var version = 1;
+
+var currency;
+var tai, rao;
+var c1Exp, c2Exp;
+
+var achievement1;
+var achievement2;
+var achievement3;
+var achievement4;
+var achievement5;
+var achievement6;
+var achievement7;
+var achievement8;
+var achievement9;
+var achievement10;
+var achievement11;
+var achievement12;
+var chapter1, chapter2, chapter3, chapter4, chapter5, chapter6, chapter7, chapter8;
+
+cat = theory.createAchievementCategory(0, "Basic Theory");
+var init = () => {
+    currency = theory.createCurrency();
+
+    ///////////////////
+    // Regular Upgrades
+
+    // c1
+    {
+        let getDesc = (level) => "tai=" + getC1(level).toString(0);
+        tai = theory.createUpgrade(0, currency, new FirstFreeCost(new ExponentialCost(15, Math.log2(2))));
+        tai.getDescription = (_) => Utils.getMath(getDesc(tai.level));
+        tai.getInfo = (amount) => Utils.getMathTo(getDesc(tai.level), getDesc(tai.level + amount));
+    }
+
+    // c2
+    {
+        let getDesc = (level) => "rao=2^{" + level + "}";
+        let getInfo = (level) => "rao=" + getC2(level).toString(0);
+        rao = theory.createUpgrade(1, currency, new ExponentialCost(5, Math.log2(10)));
+        rao.getDescription = (_) => Utils.getMath(getDesc(rao.level));
+        rao.getInfo = (amount) => Utils.getMathTo(getInfo(rao.level), getInfo(rao.level + amount));
+    }
+
+    /////////////////////
+    // Permanent Upgrades
+    theory.createPublicationUpgrade(0, currency, 1e10);
+    theory.createBuyAllUpgrade(1, currency, 1e13);
+    theory.createAutoBuyerUpgrade(2, currency, 1e30);
+
+    ///////////////////////
+    //// Milestone Upgrades
+    theory.setMilestoneCost(new LinearCost(25, 25));
+
+    {
+        c1Exp = theory.createMilestoneUpgrade(0, 3);
+        c1Exp.description = Localization.getUpgradeIncCustomExpDesc("tai", "0.05");
+        c1Exp.info = Localization.getUpgradeIncCustomExpInfo("tai", "0.05");
+        c1Exp.boughtOrRefunded = (_) => theory.invalidatePrimaryEquation();
+    }
+
+    {
+        c2Exp = theory.createMilestoneUpgrade(1, 3);
+        c2Exp.description = Localization.getUpgradeIncCustomExpDesc("rao", "0.05");
+        c2Exp.info = Localization.getUpgradeIncCustomExpInfo("rao", "0.05");
+        c2Exp.boughtOrRefunded = (_) => theory.invalidatePrimaryEquation();
+    }
+    
+    /////////////////
+    //// Achievements
+    achievement1 = theory.createAchievement(0, cat, "The Beginnings", "Started!", () => theory.tau == 0);
+    achievement2 = theory.createAchievement(1, cat, "gogogo!", "Reach 1e7 rho", () => theory.tau > BigNumber.from("1e7"));
+    achievement3 = theory.createAchievement(2, cat, "Nostalgia", "Reach 1e10 rho, enough to unlock publications", () => theory.tau > BigNumber.from("1e10"));
+    achievement4 = theory.createAchievement(3, cat, "A Stone's Throw Away", "Reach 1e25 rho, enough to unlock the first milestone", () => theory.tau > BigNumber.from("1e10"));
+    achievement5 = theory.createAchievement(4, cat, "haha funny number", "No description needed", () => theory.tau > BigNumber.from("4.2e69"));
+    achievement6 = theory.createAchievement(5, cat, "Century", "Reach ee100 rho", () => theory.tau > BigNumber.from("1e100"));
+    achievement7 = theory.createAchievement(6, cat, "A fourth of the way", "Reach e250 rho", () => theory.tau > BigNumber.from("1e250"));
+    achievement8 = theory.createAchievement(7, cat, "funny number again", "ouo", () => theory.tau > BigNumber.from("6.9e420"));
+    achievement9 = theory.createAchievement(8, cat, "Increasing Existential Crisis", "Read the story", () => theory.tau > BigNumber.from("1e500"));
+    achievement10 = theory.createAchievement(9, cat, "ouo", "ouo", () => theory.tau > BigNumber.from("4.56e789"));
+    achievement11 = theory.createAchievement(10, cat, "Almost there", "Reach ee900 rho", () => theory.tau > BigNumber.from("1e900"));
+    achievement12 = theory.createAchievement(11, cat, "Solution to Life", "Reach the tau cap", () => theory.tau > BigNumber.from("1e1000"));
+    ///////////////////
+    chapter1 = theory.createStoryChapter(0, "An Existential Crisis", "You have had this same dream every day for your life. \nThere's a function, and all you see is c1 and c2, along with a graph. Nothing else.\nAs you reach e1000 rho, however, the function just disappears. You wake up. \nAs you question this, you also wonder: why did I go through all this theorywork to discover such a simple way to solve whether the function you were handed to exists? Why you? Why do you exist? Why do these theories exist? Why does everything exist? Is there ever an answer to existence? \nWhoa. You've gone too far. Besides, how would you have an existential crisis at the ripe age of 82? \nYou think: perhaps I just follow my dreams and make a simple theory with just c1 and c2, as well as exponents. And rho as the currency, as expected. Besides, would it really hurt? \nYou name the variables Tai and Rao after your best friends.", () => theory.tau == 0);
+    chapter2 = theory.createStoryChapter(1, "Pain", "You see that your theory is progressing so slowly. It's painstaking, doing such slow calculations and watching. You wish it would be quicker and you'd get better tools by publication. But you decide to wait until you can publish and not give up. You need an answer.", () => theory.tau > BigNumber.from("1e7"));
+    chapter3 = theory.createStoryChapter(2, "Start of Speed", "Finally, you get to publish your theory. You call it \"The Theory of Simplicity\". \nMost people laugh at you, but others think you're on to something.", () => theory.tau > BigNumber.from("1e10"));
+    chapter4 = theory.createStoryChapter(3, "More Speed, Please", "You have achieved your first e25 of currency! \nYou celebrate by buying a milestone, making you faster. ", () => theory.tau > BigNumber.from("1e25"));
+    chapter5 = theory.createStoryChapter(4, "Century", "100. Why 100? Why is this number so special? What if the number system was different? How would it be different? Why does this exist? Why do we exist? Why does life exist? And why is my function so simple? \nThoughts attack your head like hornets, but you push on.", () => theory.tau > BigNumber.from("1e100"));
+    chapter6 = theory.createStoryChapter(5, "Halfway through", "You're halfway through your goal. Your questions have all taken you to this question: what is life? And why does life involve death and sadness? Why not just immortality? \nAnd yet again, your dreams have started to recur, getting more and more intense, so your philosophical thoughts also get stronger. But you push on.", () => theory.tau > BigNumber.from("1e500"));
+    chapter7 = theory.createStoryChapter(6, "So close, yet so far", "You're almost there! gogogo, you can do it! Isn't that what your students said to you when you were so close to achieving the goal of seeing if e^bxdt converges or diverges? Dreams start to appear in your head about complex equations all surrounding the simple c1c2, but you don't implement them. You don't want to ruin the theory.", () => theory.tau > BigNumber.from("1e900"));
+    chapter8 = theory.createStoryChapter(7, "Finality", "And you reached it. All of a sudden, you see a sight in your eyes: \nAll the equations come together to form a scarily complex one, but then you see something hopping on the side. \nIt's e^(pi*i)+1. And it multiplies the rest of the equation. \nA lot of things appear all of a sudden. You as a child, looking at calculus equations back in 5th grade, then going to high school, becoming an undergraduate student, getting your students, solving the equation, being a professor, retiring, moving to Montreal, seeing your children grow up, and even your grandson, Gilles-Philippe. \nYou then see the Earth forming, the universe expanding from the big bang. \nBut then the future comes into view: \nHumanity dies after a huge disaster shakes them and only a small group of people escape on a ship known as Seedship. They settle down with another civilization. But eventually, both civilizations die. The Sun dies. The sky grows darker as galaxies disappear beyond reach. And the last stars die. The universe grows dark. \nThe last burst of Hawking Radiation from a black hole resonates through the universe, the last light in the universe. \nBut that was the culmination of all black holes in the universe? What would happen on the other side? Another big bang? And you realize.\n Life is a culmination of careful factors in the universe that combined together at just the right time. And it's a cycle, and so is everything inside and outside. One mustn't mess with the cycle because the universe will try to return back to the cycle. This is partly why people fear overpopulation if everyone was immortal, but also partly why humanity died in the future. We are here because of all these factors, and we must continue peacefully, as we are made of the same thing: atoms, quarks, gluons, etc. Even dark matter and dark energy came from the same big bang. We shouldn't be afraid of what life has in store for us and control it. We should instead realize our personal legends, and then live in peace with life. \nThe universe is a cycle because without it, things would quickly get our of control, just as the theories you did would diverge. \nAs your vision ends, you realize that you've realized your Personal Legend. You go on to chronicle your story in a book and pass it down to your grandchild (Gilles-Philippe), who makes a game based off of it: Exponential Idle.", () => theory.tau > BigNumber.from("1e1000"));
+
+    //// Story chapters
+
+    updateAvailability();
+}
+
+var updateAvailability = () => {
+    c2Exp.isAvailable = c1Exp.level > 0;
+}
+
+var tick = (elapsedTime, multiplier) => {
+    let dt = BigNumber.from(elapsedTime * multiplier);
+    let bonus = theory.publicationMultiplier;
+    currency.value += dt * bonus * getC1(tai.level).pow(getC1Exponent(c1Exp.level)) *
+                                   getC2(rao.level).pow(getC2Exponent(c2Exp.level));
+}
+
+var getPrimaryEquation = () => {
+    let result = "\\dot{\\rho} = (tai)";
+
+    if (c1Exp.level == 1) result += "^{0.05}";
+    if (c1Exp.level == 2) result += "^{0.1}";
+    if (c1Exp.level == 3) result += "^{0.15}";
+
+    result += "(rao)";
+
+    if (c2Exp.level == 1) result += "^{0.05}";
+    if (c2Exp.level == 2) result += "^{0.1}";
+    if (c2Exp.level == 3) result += "^{0.15}";
+
+    return result;
+}
+
+var getSecondaryEquation = () => theory.latexSymbol + "=\\max\\rho";
+var getPublicationMultiplier = (tau) => tau.pow(0.164) / BigNumber.THREE;
+var getPublicationMultiplierFormula = (symbol) => "\\frac{{" + symbol + "}^{0.164}}{3}";
+var getTau = () => currency.value;
+var get2DGraphValue = () => currency.value.sign * (BigNumber.ONE + currency.value.abs()).log10().toNumber();
+
+var getC1 = (level) => Utils.getStepwisePowerSum(level, 2, 10, 0);
+var getC2 = (level) => BigNumber.TWO.pow(level);
+var getC1Exponent = (level) => BigNumber.from(1 + 0.05 * level);
+var getC2Exponent = (level) => BigNumber.from(1 + 0.05 * level);
+
+init();
