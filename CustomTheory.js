@@ -8,11 +8,12 @@ var id = "ouo";
 var name = "Basic Theory";
 var description = "This theory leads to a beautiful conclusion and is based off of the basic starter theory you get when making custom theories. It has a LOT of story chapters but you'll be satisfied in the end :) ouo.";
 var authors = "invalid-user#2123";
-var version = 1;
+var version = 2;
 
 var currency;
-var tai, rao;
+var tai, rao, C;
 var c1Exp, c2Exp;
+theory.primaryEquationHeight=100;
 
 var achievement1;
 var achievement2;
@@ -25,7 +26,7 @@ var achievement8;
 var achievement9;
 var achievement10;
 var achievement11;
-var achievement12;
+var achievement12, achievement13;
 var chapter1, chapter2, chapter3, chapter4, chapter5, chapter6, chapter7, chapter8;
 
 cat = theory.createAchievementCategory(0, "Basic Theory");
@@ -50,6 +51,14 @@ var init = () => {
         rao = theory.createUpgrade(1, currency, new ExponentialCost(5, Math.log2(10)));
         rao.getDescription = (_) => Utils.getMath(getDesc(rao.level));
         rao.getInfo = (amount) => Utils.getMathTo(getInfo(rao.level), getInfo(rao.level + amount));
+    }
+    // c3
+    {
+        let getDesc = (level) => "C=10^{" + level + "}";
+        let getInfo = (level) => "C=" + getC3(level).toString(0);
+        C = theory.createUpgrade(2, currency, new ExponentialCost(BigNumber.from("1e10"), 10));
+        C.getDescription = (_) => Utils.getMath(getDesc(C.level));
+        C.getInfo = (amount) => Utils.getMathTo(getInfo(C.level), getInfo(C.level + amount));
     }
 
     /////////////////////
@@ -90,8 +99,9 @@ var init = () => {
     achievement10 = theory.createAchievement(9, cat, "ouo", "ouo", () => currency.value > BigNumber.from("4.56e789"));
     achievement11 = theory.createAchievement(10, cat, "Almost there", "Reach ee900 rho", () => currency.value > BigNumber.from("1e900"));
     achievement12 = theory.createAchievement(11, cat, "Solution to Life", "Reach the tau cap", () => currency.value > BigNumber.from("1e1000"));
+    achievement13 = theory.createAchievement(12, cat, "Get Trolled", "ouo", () => C.level > 5);
     ///////////////////
-    chapter1 = theory.createStoryChapter(0, "An Existential Crisis", "You have had this same dream every day for your life. \nThere's a function, and all you see is c1 and c2, along with a graph. Nothing else.\nAs you reach e1000 rho, however, the function just disappears. You wake up. \nAs you question this, you also wonder: why did I go through all this theorywork to discover such a simple way to solve whether the function you were handed to exists? Why you? Why do you exist? Why do these theories exist? Why does everything exist? Is there ever an answer to existence? \nWhoa. You've gone too far. Besides, how would you have an existential crisis at the ripe age of 82? \nYou think: perhaps I just follow my dreams and make a simple theory with just c1 and c2, as well as exponents. And rho as the currency, as expected. Besides, would it really hurt? \nYou name the variables Tai and Rao after your best friends.", () => currency.value == 0);
+    chapter1 = theory.createStoryChapter(0, "An Existential Crisis", "You have had this same dream every day for your life. \nThere's a function, and all you see is c1 and c2, along with a graph. Nothing else.\nAs you reach e1000 rho, however, the function just disappears. You wake up. \nAs you question this, you also wonder: why did I go through all this theorywork to discover such a simple way to solve whether the function you were handed to exists? Why you? Why do you exist? Why do these theories exist? Why does everything exist? Is there ever an answer to existence? \nWhoa. You've gone too far. Besides, how would you have an existential crisis at the ripe age of 82? \nYou think: perhaps I just follow my dreams and make a simple theory with just c1 and c2, as well as exponents. And rho as the currency, as expected. Besides, would it really hurt? You also embellish the theory with a few extra equations that make it more appealing to the scientific community by just bashing some functions randomly. \nYou name the variables Tai and Rao after your best friends.", () => currency.value == 0);
     chapter2 = theory.createStoryChapter(1, "Pain", "You see that your theory is progressing so slowly. It's painstaking, doing such slow calculations and watching. You wish it would be quicker and you'd get better tools by publication. But you decide to wait until you can publish and not give up. You need an answer.", () => currency.value > BigNumber.from("1e5"));
     chapter3 = theory.createStoryChapter(2, "Start of Speed", "Finally, you get to publish your theory. You call it \"The Theory of Simplicity\". \nMost people laugh at you, but others think you're on to something.", () => currency.value > BigNumber.from("1e7"));
     chapter4 = theory.createStoryChapter(3, "More Speed, Please", "You have achieved your first e25 of currency! \nYou celebrate by buying a milestone, making you faster. ", () => currency.value > BigNumber.from("1e20"));
@@ -130,6 +140,7 @@ var getPrimaryEquation = () => {
     if (c2Exp.level == 2) result += "^{1.154}";
     if (c2Exp.level == 3) result += "^{1.231}";
 
+    result+="+(\\frac{\\int_{tai}^{rao} x^{0.01C}dx}{\\frac{d}{dx}(1.71C^{1.7x})})*(e^{\\pi  i}+1)"
     return result;
 }
 
@@ -141,6 +152,7 @@ var get2DGraphValue = () => currency.value.sign * (BigNumber.ONE + currency.valu
 
 var getC1 = (level) => Utils.getStepwisePowerSum(level, 2, 10, 0);
 var getC2 = (level) => BigNumber.TWO.pow(level);
+var getC3 = (level) => BigNumber.TEN.pow(level);
 var getC1Exponent = (level) => BigNumber.from(1 + 0.077 * level);
 var getC2Exponent = (level) => BigNumber.from(1 + 0.08 * level);
 
