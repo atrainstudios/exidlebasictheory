@@ -140,7 +140,7 @@ var getPrimaryEquation = () => {
     if (c2Exp.level == 2) result += "^{1.154}";
     if (c2Exp.level == 3) result += "^{1.231}";
 
-    result+="+(\\frac{\\int_{tai}^{rao} x^{0.01C}dx}{\\frac{d}{dx}(1.71C^{1.7x})})*(e^{\\pi  i}+1)"
+    result+="+(\\frac{\\int_{tai}^{rao} x^{0.01C}dx}{\\frac{d}{dx}(1.71C^{1.7x}|x=1)})*(e^{\\pi  i}+1)"
     return result;
 }
 
