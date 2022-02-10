@@ -7,7 +7,7 @@ import { Utils } from "./api/Utils";
 var id = "ouo";
 var name = "Basic Theory";
 var description = "This theory leads to a beautiful conclusion and is based off of the basic starter theory you get when making custom theories. It has a LOT of story chapters but you'll be satisfied in the end :) ouo.";
-var authors = "invalid-user#2123";
+var authors = "invalid-user#7960";
 var version = 2.1;
 
 var currency;
