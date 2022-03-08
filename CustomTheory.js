@@ -69,7 +69,7 @@ var init = () => {
 
     ///////////////////////
     //// Milestone Upgrades
-    theory.setMilestoneCost(new LinearCost(2, 2));
+    theory.setMilestoneCost(new LinearCost(2, 3));
 
     {
         c1Exp = theory.createMilestoneUpgrade(0, 3);
@@ -100,6 +100,8 @@ var init = () => {
     achievement11 = theory.createAchievement(10, cat, "Almost there", "Reach ee900 rho", () => currency.value > BigNumber.from("1e900"));
     achievement12 = theory.createAchievement(11, cat, "Solution to Life", "Reach the tau cap", () => currency.value > BigNumber.from("1e1000"));
     achievement13 = theory.createAchievement(12, cat, "Get Trolled", "ouo", () => C.level > 5);
+    achievement14 = theory.createAchievement(13, cat, "???", "???", () => curremcy.value > BigNumber.from("1.11e1111"));
+
     ///////////////////
     chapter1 = theory.createStoryChapter(0, "An Existential Crisis", "You have had this same dream every day for your life. \nThere's a function, and all you see is c1 and c2, along with a graph. Nothing else.\nAs you reach e1000 rho, however, the function just disappears. You wake up. \nAs you question this, you also wonder: why did I go through all this theorywork to discover such a simple way to solve whether the function you were handed to exists? Why you? Why do you exist? Why do these theories exist? Why does everything exist? Is there ever an answer to existence? \nWhoa. You've gone too far. Besides, how would you have an existential crisis at the ripe age of 82? \nYou think: perhaps I just follow my dreams and make a simple theory with just c1 and c2, as well as exponents. And rho as the currency, as expected. Besides, would it really hurt? You also embellish the theory with a few extra equations that make it more appealing to the scientific community by just bashing some functions randomly. \nYou name the variables Tai and Rao after your best friends.", () => currency.value == 0);
     chapter2 = theory.createStoryChapter(1, "Pain", "You see that your theory is progressing so slowly. It's painstaking, doing such slow calculations and watching. You wish it would be quicker and you'd get better tools by publication. But you decide to wait until you can publish and not give up. You need an answer.", () => currency.value > BigNumber.from("1e5"));
