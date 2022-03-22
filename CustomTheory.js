@@ -8,12 +8,26 @@ var id = "ouo";
 var name = "Basic Theory";
 var description = "This theory leads to a beautiful conclusion and is based off of the basic starter theory you get when making custom theories. It has a LOT of story chapters but you'll be satisfied in the end :) ouo.";
 var authors = "invalid-user#7960";
-var version = 2.1;
+var version = 3;
 
 var currency;
 var tai, rao, C;
 var c1Exp, c2Exp;
 theory.primaryEquationHeight=100;
+//Custom cost (this was a frustration)
+var myCustomCost = (level) => {
+var cost;
+switch(level) {
+case 0: {cost=BigNumber.from("2e0");break}
+case 1: {cost=BigNumber.from("4e0");break}
+case 2: {cost=BigNumber.from("6e0");break}
+case 3: {cost=BigNumber.from("1e1");break}
+case 4: {cost=BigNumber.from("1.5e1");break}
+case 5: {cost=BigNumber.from("2.75e1");break}
+case 6: {cost=BigNumber.from("7.5e1");break}
+}
+return cost;
+}
 
 var achievement1;
 var achievement2;
@@ -69,7 +83,7 @@ var init = () => {
 
     ///////////////////////
     //// Milestone Upgrades
-    theory.setMilestoneCost(new LinearCost(2, 3));
+    theory.setMilestoneCost(new CustomCost(myCustomCost));
 
     {
         c1Exp = theory.createMilestoneUpgrade(0, 3);
@@ -83,6 +97,12 @@ var init = () => {
         c2Exp.description = Localization.getUpgradeIncCustomExpDesc("rao", "0.077");
         c2Exp.info = Localization.getUpgradeIncCustomExpInfo("rao", "0.077");
         c2Exp.boughtOrRefunded = (_) => theory.invalidatePrimaryEquation();
+    }
+    {
+        m3Exp = theory.createMilestoneUpgrade(2, 1);
+        m3Exp.description = Localization.getUpgradeIncCustomExpDesc("rao", "0.01");
+        m3Exp.info = Localization.getUpgradeIncCustomExpInfo("rao", "0.01");
+        m3Exp.boughtOrRefunded = (_) => theory.invalidatePrimaryEquation();
     }
     
     /////////////////
@@ -100,13 +120,14 @@ var init = () => {
     achievement11 = theory.createAchievement(10, cat, "Almost there", "Reach ee900 rho", () => currency.value > BigNumber.from("1e900"));
     achievement12 = theory.createAchievement(11, cat, "Solution to Life", "Reach the tau cap", () => currency.value > BigNumber.from("1e1000"));
     achievement13 = theory.createAchievement(12, cat, "Get Trolled", "ouo", () => C.level > 5);
-    achievement14 = theory.createAchievement(13, cat, "???", "???", () => curremcy.value > BigNumber.from("1.11e1111"));
+    achievement14 = theory.createAchievement(13, cat, "???", "???", () => currency.value > BigNumber.from("1.11e1111"));
+    achievement15 = theory.createAchievement(14, cat, "Weierstra🅱️", "???", () => C.level>1000);
 
     ///////////////////
     chapter1 = theory.createStoryChapter(0, "An Existential Crisis", "You have had this same dream every day for your life. \nThere's a function, and all you see is c1 and c2, along with a graph. Nothing else.\nAs you reach e1000 rho, however, the function just disappears. You wake up. \nAs you question this, you also wonder: why did I go through all this theorywork to discover such a simple way to solve whether the function you were handed to exists? Why you? Why do you exist? Why do these theories exist? Why does everything exist? Is there ever an answer to existence? \nWhoa. You've gone too far. Besides, how would you have an existential crisis at the ripe age of 82? \nYou think: perhaps I just follow my dreams and make a simple theory with just c1 and c2, as well as exponents. And rho as the currency, as expected. Besides, would it really hurt? You also embellish the theory with a few extra equations that make it more appealing to the scientific community by just bashing some functions randomly. \nYou name the variables Tai and Rao after your best friends.", () => currency.value == 0);
     chapter2 = theory.createStoryChapter(1, "Pain", "You see that your theory is progressing so slowly. It's painstaking, doing such slow calculations and watching. You wish it would be quicker and you'd get better tools by publication. But you decide to wait until you can publish and not give up. You need an answer.", () => currency.value > BigNumber.from("1e5"));
     chapter3 = theory.createStoryChapter(2, "Start of Speed", "Finally, you get to publish your theory. You call it \"The Theory of Simplicity\". \nMost people laugh at you, but others think you're on to something.", () => currency.value > BigNumber.from("1e7"));
-    chapter4 = theory.createStoryChapter(3, "More Speed, Please", "You have achieved your first e25 of currency! \nYou celebrate by buying a milestone, making you faster. ", () => currency.value > BigNumber.from("1e20"));
+    chapter4 = theory.createStoryChapter(3, "More Speed, Please", "You have achieved your first e20 of currency! \nYou celebrate by buying a milestone, making you faster. ", () => currency.value > BigNumber.from("1e20"));
     chapter5 = theory.createStoryChapter(4, "Century", "100. Why 100? Why is this number so special? What if the number system was different? How would it be different? Why does this exist? Why do we exist? Why does life exist? And why is my function so simple? \nThoughts attack your head like hornets, but you push on.", () => currency.value > BigNumber.from("1e100"));
     chapter6 = theory.createStoryChapter(5, "Halfway through", "You're halfway through your goal. Your questions have all taken you to this question: what is life? And why does life involve death and sadness? Why not just immortality? \nAnd yet again, your dreams have started to recur, getting more and more intense, so your philosophical thoughts also get stronger. But you push on.", () => currency.value > BigNumber.from("1e500"));
     chapter7 = theory.createStoryChapter(6, "So close, yet so far", "You're almost there! gogogo, you can do it! Isn't that what your students said to you when you were so close to achieving the goal of seeing if e^bxdt converges or diverges? Dreams start to appear in your head about complex equations all surrounding the simple c1c2, but you don't implement them. You don't want to ruin the theory.", () => currency.value > BigNumber.from("1e900"));
@@ -126,7 +147,7 @@ var tick = (elapsedTime, multiplier) => {
     let dt = BigNumber.from(elapsedTime * multiplier);
     let bonus = theory.publicationMultiplier;
     currency.value += dt * bonus * getC1(tai.level).pow(getC1Exponent(c1Exp.level)) *
-                                   getC2(rao.level).pow(getC2Exponent(c2Exp.level));
+                                   getC2(rao.level).pow(getC2Exponent(c2Exp.level)+getM3Exponent(m3Exp.level));
     updateAvailability();
 }
 
@@ -138,10 +159,13 @@ var getPrimaryEquation = () => {
     if (c1Exp.level == 3) result += "^{1.24}";
 
     result += "(rao)";
-
-    if (c2Exp.level == 1) result += "^{1.077}";
-    if (c2Exp.level == 2) result += "^{1.154}";
-    if (c2Exp.level == 3) result += "^{1.231}";
+    if (c2Exp.level == 0 && m3Exp.level == 1) result += "^{1.01}";
+    if (c2Exp.level == 1 && m3Exp.level == 0) result += "^{1.077}";
+    if (c2Exp.level == 1 && m3Exp.level == 1) result += "^{1.087}";
+    if (c2Exp.level == 2 && m3Exp.level == 0) result += "^{1.154}";
+    if (c2Exp.level == 2 && m3Exp.level == 1) result += "^{1.164}";
+    if (c2Exp.level == 3 && m3Exp.level == 0) result += "^{1.231}";
+    if (c2Exp.level == 3 && m3Exp.level == 1) result += "^{1.241}";
 
     result+="+(\\frac{\\int_{0}^{tai*(e^{\\pi  i}+1)} x^{0.01C}dx}{\\frac{d}{dx}(1.71C^{1.7x}|x=rao)})"
     return result;
@@ -158,5 +182,6 @@ var getC2 = (level) => BigNumber.TWO.pow(level);
 var getC3 = (level) => BigNumber.TEN.pow(level);
 var getC1Exponent = (level) => BigNumber.from(1 + 0.077 * level);
 var getC2Exponent = (level) => BigNumber.from(1 + 0.08 * level);
+var getM3Exponent = (level) => BigNumber.from(0.01 * level);
 
 init();
