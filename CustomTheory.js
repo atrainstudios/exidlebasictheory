@@ -100,8 +100,8 @@ var init = () => {
     }
     {
         m3Exp = theory.createMilestoneUpgrade(2, 1);
-        m3Exp.description = Localization.getUpgradeIncCustomExpDesc("rao", "0.01");
-        m3Exp.info = Localization.getUpgradeIncCustomExpInfo("rao", "0.01");
+        m3Exp.description = Localization.getUpgradeIncCustomExpDesc("rao", "0.003");
+        m3Exp.info = Localization.getUpgradeIncCustomExpInfo("rao", "0.003");
         m3Exp.boughtOrRefunded = (_) => theory.invalidatePrimaryEquation();
     }
     
@@ -159,13 +159,13 @@ var getPrimaryEquation = () => {
     if (c1Exp.level == 3) result += "^{1.24}";
 
     result += "(rao)";
-    if (c2Exp.level == 0 && m3Exp.level == 1) result += "^{1.01}";
+    if (c2Exp.level == 0 && m3Exp.level == 1) result += "^{1.003}";
     if (c2Exp.level == 1 && m3Exp.level == 0) result += "^{1.077}";
-    if (c2Exp.level == 1 && m3Exp.level == 1) result += "^{1.087}";
+    if (c2Exp.level == 1 && m3Exp.level == 1) result += "^{1.08}";
     if (c2Exp.level == 2 && m3Exp.level == 0) result += "^{1.154}";
-    if (c2Exp.level == 2 && m3Exp.level == 1) result += "^{1.164}";
+    if (c2Exp.level == 2 && m3Exp.level == 1) result += "^{1.157}";
     if (c2Exp.level == 3 && m3Exp.level == 0) result += "^{1.231}";
-    if (c2Exp.level == 3 && m3Exp.level == 1) result += "^{1.241}";
+    if (c2Exp.level == 3 && m3Exp.level == 1) result += "^{1.234}";
 
     result+="+(\\frac{\\int_{0}^{tai*(e^{\\pi  i}+1)} x^{0.01C}dx}{\\frac{d}{dx}(1.71C^{1.7x}|x=rao)})"
     return result;
@@ -182,6 +182,6 @@ var getC2 = (level) => BigNumber.TWO.pow(level);
 var getC3 = (level) => BigNumber.TEN.pow(level);
 var getC1Exponent = (level) => BigNumber.from(1 + 0.077 * level);
 var getC2Exponent = (level) => BigNumber.from(1 + 0.08 * level);
-var getM3Exponent = (level) => BigNumber.from(0.01 * level);
+var getM3Exponent = (level) => BigNumber.from(0.003 * level);
 
 init();
