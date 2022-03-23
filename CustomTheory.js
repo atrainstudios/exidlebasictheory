@@ -180,8 +180,8 @@ var get2DGraphValue = () => currency.value.sign * (BigNumber.ONE + currency.valu
 var getC1 = (level) => Utils.getStepwisePowerSum(level, 2, 10, 0);
 var getC2 = (level) => BigNumber.TWO.pow(level);
 var getC3 = (level) => BigNumber.TEN.pow(level);
-var getC1Exponent = (level) => BigNumber.from(1 + 0.077 * level);
-var getC2Exponent = (level) => BigNumber.from(1 + 0.08 * level);
+var getC1Exponent = (level) => BigNumber.from(1 + 0.08 * level);
+var getC2Exponent = (level) => BigNumber.from(1 + 0.077 * level);
 var getM3Exponent = (level) => BigNumber.from(0.003 * level);
 
 init();
