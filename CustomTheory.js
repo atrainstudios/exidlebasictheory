@@ -118,12 +118,12 @@ var init = () => {
     achievement7 = theory.createAchievement(6, cat, "A fourth of the way", "Reach e250 rho", () => currency.value > BigNumber.from("1e250"));
     achievement8 = theory.createAchievement(7, cat, "funny number again", "ouo", () => currency.value > BigNumber.from("6.9e420"));
     achievement9 = theory.createAchievement(8, cat, "Increasing Existential Crisis", "Read the story", () => currency.value > BigNumber.from("1e500"));
-    achievement10 = theory.createAchievement(9, cat, "ouo", "ouo", () => currency.value > BigNumber.from("4.56e789"));
+    achievement10 = theory.createAchievement(9, cat, "ouo", "456789", () => currency.value > BigNumber.from("4.56e789"));
     achievement11 = theory.createAchievement(10, cat, "Almost there", "Reach ee900 rho", () => currency.value > BigNumber.from("1e900"));
     achievement12 = theory.createAchievement(11, cat, "Solution to Life", "Reach e1000 rho", () => currency.value > BigNumber.from("1e1000"));
     achievement13 = theory.createSecretAchievement(12, cat2, "Get Trolled", "C actually does nothing LOL", "no hint for this", () => C.level > 5);
     achievement14 = theory.createSecretAchievement(13, cat2, "1111", "Reach 1.11e1111 tho", "11111111111111111", () => currency.value > BigNumber.from("1.11e1111"));
-    achievement15 = theory.createSecretAchievement(14, cat2, "Weierstra🅱️", "hi im xli🅱️ and i liek weierstra🅱️ (C level > 1000)", "you C...", () => C.level > 1000);
+    achievement15 = theory.createSecretAchievement(14, cat2, "Weierstra🅱️", "hi im xli🅱️ and i liek weierstra🅱️ (C level > 143)", "you C...", () => C.level > 143);
     achievement16 = theory.createSecretAchievement(15, cat2, "Did you really think I wouldn't include another funny number achievment here?", "69 levels of c1 and 420 levels of C2", "something else is funny", () => tai.level === 420 && rao.level === 69);
 
     ///////////////////
