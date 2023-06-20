@@ -123,7 +123,7 @@ var init = () => {
     achievement12 = theory.createAchievement(11, cat, "Solution to Life", "Reach e1000 rho", () => currency.value > BigNumber.from("1e1000"));
     achievement13 = theory.createSecretAchievement(12, cat2, "Get Trolled", "C actually does nothing LOL", () => C.level > 5);
     achievement14 = theory.createSecretAchievement(13, cat2, "1111", "Reach 1.11e1111 tho", () => currency.value > BigNumber.from("1.11e1111"));
-    achievement15 = theory.createSecretAchievement(14, cat2, "Weierstra🅱️", "hi im xli🅱️ and i liek weierstra🅱️", () => C.level>1000);
+    achievement15 = theory.createSecretAchievement(14, cat2, "Weierstra🅱️", "hi im xli🅱️ and i liek weierstra🅱️", () => C.level > 1000);
     achievement16 = theory.createSecretAchievement(15, cat2, "Did you really think I wouldn't include another funny number achievment here?", "69 levels of c1 and 420 levels of C2", () => c1.level === 420 && c2.level === 69);
 
     ///////////////////
