@@ -6,9 +6,9 @@ import { Utils } from "./api/Utils";
 
 var id = "ouo";
 var name = "Basic Theory";
-var description = "This theory leads to a beautiful conclusion and is based off of the basic starter theory you get when making custom theories. It has a LOT of story chapters but you'll be satisfied in the end :) ouo.";
-var authors = "invalid-user#7960";
-var version = 3;
+var description = "This theory leads to a beautiful conclusion and is based off of the basic starter theory you get when making custom theories. It has a LOT of story chapters but you'll be satisfied in the end :) Gilles rejected this at the start but I want the true meaning of this theory to be known. How simple beginnings can lead to beautiful endings - how even the simplest things have meaning in them.";
+var authors = "invalid-user";
+var version = 4;
 
 var currency;
 var tai, rao, C;
@@ -17,6 +17,7 @@ theory.primaryEquationHeight=100;
 //Custom cost (this was a frustration)
 var myCustomCost = (level) => {
 var cost;
+var cat2;
 switch(level) {
 case 0: {cost=BigNumber.from("2e0");break}
 case 1: {cost=BigNumber.from("4e0");break}
@@ -40,10 +41,11 @@ var achievement8;
 var achievement9;
 var achievement10;
 var achievement11;
-var achievement12, achievement13;
-var chapter1, chapter2, chapter3, chapter4, chapter5, chapter6, chapter7, chapter8;
+var achievement12, achievement13, achievement14, achievement15, achievement16;
+var chapter1, chapter2, chapter3, chapter4, chapter5, chapter6, chapter7, chapter8, chapter9, chapter10;
 
 cat = theory.createAchievementCategory(0, "Basic Theory");
+cat2 = theory.createAchievementCategory(1, "Secrets");
 var init = () => {
     currency = theory.createCurrency();
 
@@ -118,10 +120,11 @@ var init = () => {
     achievement9 = theory.createAchievement(8, cat, "Increasing Existential Crisis", "Read the story", () => currency.value > BigNumber.from("1e500"));
     achievement10 = theory.createAchievement(9, cat, "ouo", "ouo", () => currency.value > BigNumber.from("4.56e789"));
     achievement11 = theory.createAchievement(10, cat, "Almost there", "Reach ee900 rho", () => currency.value > BigNumber.from("1e900"));
-    achievement12 = theory.createAchievement(11, cat, "Solution to Life", "Reach the tau cap", () => currency.value > BigNumber.from("1e1000"));
-    achievement13 = theory.createAchievement(12, cat, "Get Trolled", "ouo", () => C.level > 5);
-    achievement14 = theory.createAchievement(13, cat, "???", "???", () => currency.value > BigNumber.from("1.11e1111"));
-    achievement15 = theory.createAchievement(14, cat, "Weierstra🅱️", "???", () => C.level>1000);
+    achievement12 = theory.createAchievement(11, cat, "Solution to Life", "Reach e1000 rho", () => currency.value > BigNumber.from("1e1000"));
+    achievement13 = theory.createSecretAchievement(0, cat2, "Get Trolled", "C actually does nothing LOL", () => C.level > 5);
+    achievement14 = theory.createSecretAchievement(1, cat2, "1111", "Reach 1.11e1111 tho", () => currency.value > BigNumber.from("1.11e1111"));
+    achievement15 = theory.createSecretAchievement(2, cat2, "Weierstra🅱️", "hi im xli🅱️ and i liek weierstra🅱️", () => C.level>1000);
+    achievement16 = theory.createSecretAchievement(3, cat2, "Did you really think I wouldn't include another funny number achievment here?", "69 levels of c1 and 420 levels of C2", () => c1.level === 420 && c2.level === 69);
 
     ///////////////////
     chapter1 = theory.createStoryChapter(0, "An Existential Crisis", "You have had this same dream every day for your life. \nThere's a function, and all you see is c1 and c2, along with a graph. Nothing else.\nAs you reach e1000 rho, however, the function just disappears. You wake up. \nAs you question this, you also wonder: why did I go through all this theorywork to discover such a simple way to solve whether the function you were handed to exists? Why you? Why do you exist? Why do these theories exist? Why does everything exist? Is there ever an answer to existence? \nWhoa. You've gone too far. Besides, how would you have an existential crisis at the ripe age of 82? \nYou think: perhaps I just follow my dreams and make a simple theory with just c1 and c2, as well as exponents. And rho as the currency, as expected. Besides, would it really hurt? You also embellish the theory with a few extra equations that make it more appealing to the scientific community by just bashing some functions randomly. \nYou name the variables Tai and Rao after your best friends.", () => currency.value == 0);
@@ -133,6 +136,7 @@ var init = () => {
     chapter7 = theory.createStoryChapter(6, "So close, yet so far", "You're almost there! gogogo, you can do it! Isn't that what your students said to you when you were so close to achieving the goal of seeing if e^bxdt converges or diverges? Dreams start to appear in your head about complex equations all surrounding the simple c1c2, but you don't implement them. You don't want to ruin the theory.", () => currency.value > BigNumber.from("1e900"));
     chapter8 = theory.createStoryChapter(7, "Finality Pt 1", "And you reached it. All of a sudden, you see a sight in your eyes: \nAll the equations come together to form a scarily complex one, but then you see something hopping on the side. \nIt's e^(pi*i)+1. And it multiplies the rest of the equation. \nA lot of things appear all of a sudden. You as a child, looking at calculus equations back in 5th grade, then going to high school, becoming an undergraduate student, getting your students, solving the equation, being a professor, retiring, moving to Montreal, seeing your children grow up, and even your grandson, Gilles-Philippe. \nYou then see the Earth forming, the universe expanding from the big bang. But then the future comes into view: \nHumanity dies after a huge disaster shakes them and only a small group of people escape on a ship known as Seedship. They settle down with another civilization. But eventually, both civilizations die. The Sun dies. The sky grows darker as galaxies disappear beyond reach. And the last stars die. The universe grows dark. The last burst of Hawking Radiation from a black hole resonates through the universe, the last light in the universe.", () => currency.value > BigNumber.from("1e1000"));
     chapter9 = theory.createStoryChapter(8, "Finality Pt 2", "But was that the culmination of all black holes in the universe? What would happen on the other side? Another big bang? And you realize.\n Life is a culmination of careful factors in the universe that combined together at just the right time. And it's a cycle, and so is everything inside and outside. One mustn't mess with the cycle because the universe will try to return back to the cycle. This is partly why people fear overpopulation if everyone was immortal, but also partly why humanity died in the future. We are here because of all these factors, and we must continue peacefully, as we are made of the same thing: atoms, quarks, gluons, etc. Even dark matter and dark energy came from the same big bang. We shouldn't be afraid of what life has in store for us and control it. We should instead realize our personal legends, and then live in peace with life. \nThe universe is a cycle because without it, things would quickly get our of control, just as the theories you did would diverge. \nAs your vision ends, you realize that you've realized your Personal Legend. You go on to chronicle your story in a book and pass it down to your grandchild (Gilles-Philippe), who makes a game based off of it: Exponential Idle.", () => currency.value > BigNumber.from("1e1000"));
+    chapter9 = theory.createStoryChapter(9, "Wait there's another chapter?", "Never gonna give you up\nNever gonna let you down\nNever gonna run around and desert you\nNever gonna make you cry\nNever gonna say goodbye\nNever gonna tell a lie and hurt you", () => currency.value > BigNumber.from("1e1200"));
 
     //// Story chapters
 
@@ -185,3 +189,4 @@ var getC2Exponent = (level) => BigNumber.from(1 + 0.077 * level);
 var getM3Exponent = (level) => BigNumber.from(0.003 * level);
 
 init();
+//innit?
