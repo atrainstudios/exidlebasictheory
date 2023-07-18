@@ -226,7 +226,7 @@ var playHaxButton = ui.createButton({
         let menu = ui.createPopup({
             title: 'PlayHax',
             content: ui.createLabel({
-                    text: "You need " + (currency.value*BigNumber.from(1e10)).toString() + " rho to get PlayHax",,
+                    text: "You need " + (currency.value*BigNumber.from(1e10)).toString() + " rho to get PlayHax",
                     horizontalOptions: LayoutOptions.CENTER,
                     verticalOptions: LayoutOptions.CENTER
             })
@@ -300,7 +300,7 @@ var solarButton4 = ui.createButton({
     onClicked: () => {
         let menu = ui.createPopup({
             title: 'SolarTool4',
-            content: content: ui.createLabel({
+            content: ui.createLabel({
                     text: "You",
                     horizontalOptions: LayoutOptions.CENTER,
                     verticalOptions: LayoutOptions.CENTER
