@@ -164,7 +164,10 @@ var updateAvailability = () => {
 var tick = (elapsedTime, multiplier) => {
     let dt = BigNumber.from(elapsedTime * multiplier);
     let bonus = theory.publicationMultiplier;
-    if(achievement13.isUnlocked && chapter5.isUnlocked && !chapter10.isUnlocked && !chapter6.isUnlocked) {
+    if(currency.value >= BigNumber.from("1e1000") {
+        currency.value = currency.value * (BigNumber.TEN).pow(0.42/36000)
+    }
+    else if(achievement13.isUnlocked && chapter5.isUnlocked && !chapter10.isUnlocked && !chapter6.isUnlocked) {
         currency.value += (dt * bonus * getC1(tai.level).pow(getC1Exponent(c1Exp.level)) *
                                        getC2(rao.level).pow(getC2Exponent(c2Exp.level)+getM3Exponent(m3Exp.level)))*1.02;
     }
@@ -185,7 +188,9 @@ var tick = (elapsedTime, multiplier) => {
 
 var getPrimaryEquation = () => {
     let result = "\\dot{\\rho} = (tai)";
-
+    if(currency.value >= BigNumber.from("1e1000")) {
+        result = "{\\rho}_1 = {\\rho}_0 * 10^{\\frac{42}{36000}}"
+    }
     if (c1Exp.level == 1) result += "^{1.08}";
     if (c1Exp.level == 2) result += "^{1.1635}";
     if (c1Exp.level == 3) result += "^{1.247}";
