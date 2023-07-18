@@ -22,6 +22,7 @@ var count4 = 0;
 var count5 = 0;
 var count6 = 0;
 theory.primaryEquationHeight=100;
+theory.primaryEquationScale = 0.8;
 //Custom cost 
 var myCustomCost = (level) => {
 var cost;
@@ -165,19 +166,19 @@ var tick = (elapsedTime, multiplier) => {
     let bonus = theory.publicationMultiplier;
     if(achievement13.isUnlocked && chapter5.isUnlocked && !chapter10.isUnlocked && !chapter6.isUnlocked) {
         currency.value += (dt * bonus * getC1(tai.level).pow(getC1Exponent(c1Exp.level)) *
-                                       getC2(rao.level).pow(getC2Exponent(c2Exp.level)+getM3Exponent(m3Exp.level))).pow(1.02);
+                                       getC2(rao.level).pow(getC2Exponent(c2Exp.level)+getM3Exponent(m3Exp.level)))*1.02;
     }
     else if(achievement13.isUnlocked && chapter5.isUnlocked && chapter6.isUnlocked && achievement17.isUnlocked && !chapter10.isUnlocked) {
         currency.value += (dt * bonus * getC1(tai.level).pow(getC1Exponent(c1Exp.level)) *
-                                       getC2(rao.level).pow(getC2Exponent(c2Exp.level)+getM3Exponent(m3Exp.level))).pow(1.07);
+                                       getC2(rao.level).pow(getC2Exponent(c2Exp.level)+getM3Exponent(m3Exp.level)))*1.07;
     }
     else if(achievement13.isUnlocked && chapter5.isUnlocked && chapter6.isUnlocked && achievement17.isUnlocked && chapter10.isUnlocked && achievement17.isUnlocked) {
         currency.value += (dt * bonus * getC1(tai.level).pow(getC1Exponent(c1Exp.level)) *
-                                       getC2(rao.level).pow(getC2Exponent(c2Exp.level)+getM3Exponent(m3Exp.level))).pow(1.12);
+                                       getC2(rao.level).pow(getC2Exponent(c2Exp.level)+getM3Exponent(m3Exp.level)))*1.12;
     }
     else {
         currency.value += (dt * bonus * getC1(tai.level).pow(getC1Exponent(c1Exp.level)) *
-                                       getC2(rao.level).pow(getC2Exponent(c2Exp.level)+getM3Exponent(m3Exp.level))).pow(1);
+                                       getC2(rao.level).pow(getC2Exponent(c2Exp.level)+getM3Exponent(m3Exp.level)));
     }
     updateAvailability();
 }
@@ -333,6 +334,8 @@ var solarButton5 = ui.createButton({
 var grid = ui.createGrid ({
     columnDefinitions: ['1*','1*','1*'],
     rowDefinitions: ['1*','1*'],
+    columnSpacing: 0.5,
+    rowSpacing: 0.5,
     children: [solarButton1, solarButton2, solarButton3, solarButton4, solarButton5, playHaxButton]
 })
 var getEquationOverlay = () => grid;
