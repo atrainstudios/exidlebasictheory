@@ -6,9 +6,9 @@ import { Utils } from "./api/Utils";
 import { LayoutOptions } from '../api/ui/properties/LayoutOptions';//why is this api so bad
 import { ui } from '../api/ui/UI';//i hated doing this..
 
-var id = "ouo";
+var id = "uselessTheory";
 var name = "Basic Theory";
-var description = "This theory leads to a beautiful conclusion and is based off of the basic starter theory you get when making custom theories. It has a LOT of story chapters but you'll be satisfied in the end :) Gilles rejected this at the start but I want the true meaning of this theory to be known. How simple beginnings can lead to beautiful endings - how even the simplest things have meaning in them.";
+var description = "This theory leads to a beautiful conclusion and is based off of the basic starter theory you get when making custom theories. It has a LOT of story chapters but you'll be satisfied in the end :) Gilles rejected this at the start but I want the true meaning of this theory to be known. How simple beginnings can lead to beautiful endings - how even the simplest things have meaning in them. Thanks XLII for all the help on making this theory. I HATE THIS API.";
 var authors = "invalid-user";
 var version = 5;
 
@@ -226,7 +226,7 @@ var playHaxButton = ui.createButton({
         let menu = ui.createPopup({
             title: 'PlayHax',
             content: ui.createLabel({
-                    text: "You need " + (currency.value*10).toString() + " rho to get PlayHax",,
+                    text: "You need " + (currency.value*BigNumber.from(1e10)).toString() + " rho to get PlayHax",,
                     horizontalOptions: LayoutOptions.CENTER,
                     verticalOptions: LayoutOptions.CENTER
             })
