@@ -28,13 +28,13 @@ var myCustomCost = (level) => {
 var cost;
 var cat2;
 switch(level) {
-case 0: {cost=BigNumber.from("2e0");break}
-case 1: {cost=BigNumber.from("4e0");break}
-case 2: {cost=BigNumber.from("6e0");break}
-case 3: {cost=BigNumber.from("1e1");break}
-case 4: {cost=BigNumber.from("1.5e1");break}
-case 5: {cost=BigNumber.from("2.4e1");break}
-case 6: {cost=BigNumber.from("7.5e1");break}
+case 0: {cost=BigNumber.from("12e0");break}
+case 1: {cost=BigNumber.from("24e0");break}
+case 2: {cost=BigNumber.from("48e0");break}
+case 3: {cost=BigNumber.from("6e1");break}
+case 4: {cost=BigNumber.from("9e1");break}
+case 5: {cost=BigNumber.from("14.4e1");break}
+case 6: {cost=BigNumber.from("45e1");break}
 }
 return cost;
 }
@@ -98,8 +98,8 @@ var init = () => {
 
     {
         c1Exp = theory.createMilestoneUpgrade(0, 3);
-        c1Exp.description = Localization.getUpgradeIncCustomExpDesc("tai", "0.08 + 0.0035 per level increase");
-        c1Exp.info = Localization.getUpgradeIncCustomExpInfo("tai", "0.08 + 0.0035 per level increase");
+        c1Exp.description = Localization.getUpgradeIncCustomExpDesc("tai", "0.08 + 0.0035 * (lvl - 1)");
+        c1Exp.info = Localization.getUpgradeIncCustomExpInfo("tai", "0.08 + 0.0035 * (lvl - 1)");
         c1Exp.boughtOrRefunded = (_) => theory.invalidatePrimaryEquation();
     }
 
