@@ -200,6 +200,7 @@ var getPrimaryEquation = () => {
     result+="+(\\frac{\\int_{0}^{tai*(e^{\\pi  i}+1)} x^{0.01C}dx}{\\frac{d}{dx}(1.71C^{1.7x}|x=rao)})"
     return result;
 }
+init();
 
 var getSecondaryEquation = () => theory.latexSymbol + "=\\max\\rho^{0.1}";
 var getPublicationMultiplier = (tau) => tau.pow(5);
@@ -309,5 +310,5 @@ var grid = ui.createGrid ({
     children: [solarButton1, solarButton2, solarButton3, solarButton4, solarButton5, playHaxButton]
 })
 var getEquationOverlay = () => grid;
-init();
+
 //innit?
