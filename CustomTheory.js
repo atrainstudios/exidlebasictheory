@@ -98,8 +98,8 @@ var init = () => {
 
     {
         c1Exp = theory.createMilestoneUpgrade(0, 3);
-        c1Exp.description = Localization.getUpgradeIncCustomExpDesc("tai", "0.08");
-        c1Exp.info = Localization.getUpgradeIncCustomExpInfo("tai", "0.08");
+        c1Exp.description = Localization.getUpgradeIncCustomExpDesc("tai", "0.08 + 0.0035 per level increase");
+        c1Exp.info = Localization.getUpgradeIncCustomExpInfo("tai", "0.08 + 0.0035 per level increase");
         c1Exp.boughtOrRefunded = (_) => theory.invalidatePrimaryEquation();
     }
 
