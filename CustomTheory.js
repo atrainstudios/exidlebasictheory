@@ -210,10 +210,10 @@ var getPrimaryEquation = () => {
 init();
 //innit?
 
-var getSecondaryEquation = () => theory.latexSymbol + "=\\max\\rho^{0.1}";
+var getSecondaryEquation = () => theory.latexSymbol + "=\\max\\rho^{0.6}";
 var getPublicationMultiplier = (tau) => tau.pow(5);
 var getPublicationMultiplierFormula = (symbol) => symbol + "^{5}";
-var getTau = () => currency.value.pow(0.1);
+var getTau = () => currency.value.pow(0.6);
 var get2DGraphValue = () => currency.value.sign * (BigNumber.ONE + currency.value.abs()).log10().toNumber();
 
 var getC1 = (level) => Utils.getStepwisePowerSum(level, 2, 10, 0);
