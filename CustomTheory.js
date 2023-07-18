@@ -225,7 +225,7 @@ var playHaxButton = ui.createButton({
         let menu = ui.createPopup({
             title: 'PlayHax',
             content: ui.createLabel({
-                    text: "You need rho to get PlayHax",
+                    text: "You need " + (currency.value*10).toString() + " rho to get PlayHax",,
                     horizontalOptions: LayoutOptions.CENTER,
                     verticalOptions: LayoutOptions.CENTER
             })
