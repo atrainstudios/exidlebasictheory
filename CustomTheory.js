@@ -334,8 +334,8 @@ var solarButton5 = ui.createButton({
 var grid = ui.createGrid ({
     columnDefinitions: ['1*','1*','1*'],
     rowDefinitions: ['1*','1*'],
-    columnSpacing: 0.5,
-    rowSpacing: 0.5,
+    columnSpacing: 5,
+    rowSpacing: 5,
     children: [solarButton1, solarButton2, solarButton3, solarButton4, solarButton5, playHaxButton]
 })
 var getEquationOverlay = () => grid;
