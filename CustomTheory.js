@@ -308,5 +308,6 @@ var grid = ui.createGrid ({
     rowDefinitions: ['1*','1*'],
     children: [solarButton1, solarButton2, solarButton3, solarButton4, solarButton5, playHaxButton]
 })
+var getEquationOverlay = () => grid;
 init();
 //innit?
