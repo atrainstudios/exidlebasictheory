@@ -3,7 +3,8 @@ import { Localization } from "./api/Localization";
 import { BigNumber } from "./api/BigNumber";
 import { theory } from "./api/Theory";
 import { Utils } from "./api/Utils";
-import { ui } from '../api/ui/UI';//i hated doing this../
+import { LayoutOptions } from '../api/ui/properties/LayoutOptions';//why is this api so bad
+import { ui } from '../api/ui/UI';//i hated doing this..
 
 var id = "ouo";
 var name = "Basic Theory";
