@@ -201,6 +201,7 @@ var getPrimaryEquation = () => {
     return result;
 }
 init();
+//innit?
 
 var getSecondaryEquation = () => theory.latexSymbol + "=\\max\\rho^{0.1}";
 var getPublicationMultiplier = (tau) => tau.pow(5);
@@ -223,7 +224,11 @@ var playHaxButton = ui.createButton({
     onClicked: () => {
         let menu = ui.createPopup({
             title: 'PlayHax',
-            content: "You need " + currency.value.toString() + " p to get PlayHax"
+            content: ui.createLabel({
+                    text: "You need " + currency.value.toString() + " rho to get PlayHax",
+                    horizontalOptions: LayoutOptions.CENTER,
+                    verticalOptions: LayoutOptions.CENTER
+            })
         })
         menu.show();
         count6++;
@@ -237,7 +242,11 @@ var solarButton1 = ui.createButton({
     onClicked: () => {
         let menu = ui.createPopup({
             title: 'SolarTool1',
-            content: "Never"
+            content: ui.createLabel({
+                    text: "Never",
+                    horizontalOptions: LayoutOptions.CENTER,
+                    verticalOptions: LayoutOptions.CENTER
+            })
         })
         menu.show();
         count1++;
@@ -252,7 +261,11 @@ var solarButton2 = ui.createButton({
     onClicked: () => {
         let menu = ui.createPopup({
             title: 'SolarTool2',
-            content: "Gonna"
+            content: ui.createLabel({
+                    text: "Gonna",
+                    horizontalOptions: LayoutOptions.CENTER,
+                    verticalOptions: LayoutOptions.CENTER
+            })
         })
         menu.show();
         count2++;
@@ -267,7 +280,11 @@ var solarButton3 = ui.createButton({
     onClicked: () => {
         let menu = ui.createPopup({
             title: 'SolarTool3',
-            content: "Give"
+            content: ui.createLabel({
+                    text: "Give",
+                    horizontalOptions: LayoutOptions.CENTER,
+                    verticalOptions: LayoutOptions.CENTER
+            })
         })
         menu.show();
         count3++;
@@ -282,7 +299,11 @@ var solarButton4 = ui.createButton({
     onClicked: () => {
         let menu = ui.createPopup({
             title: 'SolarTool4',
-            content: "You"
+            content: content: ui.createLabel({
+                    text: "You",
+                    horizontalOptions: LayoutOptions.CENTER,
+                    verticalOptions: LayoutOptions.CENTER
+            })
         })
         menu.show();
         count4++;
@@ -297,7 +318,11 @@ var solarButton5 = ui.createButton({
     onClicked: () => {
         let menu = ui.createPopup({
             title: 'SolarTool5',
-            content: "Up"
+            content: ui.createLabel({
+                    text: "Up",
+                    horizontalOptions: LayoutOptions.CENTER,
+                    verticalOptions: LayoutOptions.CENTER
+            })
         })
         menu.show();
         count5++;
@@ -310,5 +335,3 @@ var grid = ui.createGrid ({
     children: [solarButton1, solarButton2, solarButton3, solarButton4, solarButton5, playHaxButton]
 })
 var getEquationOverlay = () => grid;
-
-//innit?
