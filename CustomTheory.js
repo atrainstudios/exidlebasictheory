@@ -164,7 +164,7 @@ var updateAvailability = () => {
 var tick = (elapsedTime, multiplier) => {
     let dt = BigNumber.from(elapsedTime * multiplier);
     let bonus = theory.publicationMultiplier;
-    if(currency.value >= BigNumber.from("1e1000") {
+    if(currency.value >= BigNumber.from("1e1000")) {
         currency.value = currency.value * (BigNumber.TEN).pow(0.42/36000)
     }
     else if(achievement13.isUnlocked && chapter5.isUnlocked && !chapter10.isUnlocked && !chapter6.isUnlocked) {
