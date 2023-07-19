@@ -3,14 +3,15 @@ import { Localization } from "./api/Localization";
 import { BigNumber } from "./api/BigNumber";
 import { theory } from "./api/Theory";
 import { Utils } from "./api/Utils";
-import { LayoutOptions } from '../api/ui/properties/LayoutOptions';//why is this api so bad
-import { ui } from '../api/ui/UI';//i hated doing this..
+import { Thickness } from '../api/ui/properties/Thickness';
+import { LayoutOptions } from '../api/ui/properties/LayoutOptions';
+import { ui } from '../api/ui/UI';
 
-var id = "ouo";
+var id = "BTOfficial";
 var name = "Basic Theory";
-var description = "This theory leads to a beautiful conclusion and is based off of the basic starter theory you get when making custom theories. It has a LOT of story chapters but you'll be satisfied in the end :) Gilles rejected this at the start but I want the true meaning of this theory to be known. How simple beginnings can lead to beautiful endings - how even the simplest things have meaning in them. Thanks XLII for all the help on making this theory. I HATE THIS API.";
-var authors = "invalid-user";
-var version = 5;
+var description = "This theory leads to a beautiful conclusion and is based off of the basic starter theory you get when making custom theories. It has a LOT of story chapters but you'll be satisfied in the end :) Gilles rejected this at the start but I want the true meaning of this theory to be known. How simple beginnings can lead to beautiful endings - how even the simplest things have meaning in them. Thanks XLII for all the help on making this theory. You are actually goated, an absolute legend. Also: I HATE THIS API.";
+var authors = "invalid-user (aka Playsprout)";
+var version = 2.0;
 
 var currency;
 var tai, rao, C;
@@ -164,8 +165,10 @@ var updateAvailability = () => {
 var tick = (elapsedTime, multiplier) => {
     let dt = BigNumber.from(elapsedTime * multiplier);
     let bonus = theory.publicationMultiplier;
-    if(currency.value >= BigNumber.from("1e1000")) {
-        currency.value = currency.value * (BigNumber.TEN).pow(0.42/36000)
+    if(chapter13.isUnlocked) {
+        theory.invalidatePrimaryEquation();
+        currency.value = currency.value * (BigNumber.TEN).pow(0.42/3600)
+        
     }
     else if(achievement13.isUnlocked && chapter5.isUnlocked && !chapter10.isUnlocked && !chapter6.isUnlocked) {
         currency.value += (dt * bonus * getC1(tai.level).pow(getC1Exponent(c1Exp.level)) *
@@ -189,7 +192,8 @@ var tick = (elapsedTime, multiplier) => {
 var getPrimaryEquation = () => {
     let result = "\\dot{\\rho} = (tai)";
     if(currency.value >= BigNumber.from("1e1000")) {
-        result = "{\\rho}_1 = {\\rho}_0 * 10^{\\frac{42}{36000}}"
+        result = "{\\rho}_1 = {\\rho}_0 * 10^{\\frac{42}{3600}}"
+        return result;
     }
     if (c1Exp.level == 1) result += "^{1.08}";
     if (c1Exp.level == 2) result += "^{1.1635}";
@@ -227,7 +231,7 @@ var playHaxButton = ui.createButton({
     row: 1,
     column: 2,
     text: "PlayHax",
-    isVisible: () => chapter5.isUnlocked,
+    isVisible: () => chapter5.isUnlocked ,
     onClicked: () => {
         let menu = ui.createPopup({
             title: 'PlayHax',
@@ -239,13 +243,14 @@ var playHaxButton = ui.createButton({
         })
         menu.show();
         count6++;
-    }
+    },
+    margin: new Thickness(20)
 })
 var solarButton1 = ui.createButton({
     row: 0,
     column: 0,
     text: "SolarTool1",
-    isVisible: () => chapter10.isUnlocked,
+    isVisible: () => chapter10.isUnlocked ,
     onClicked: () => {
         let menu = ui.createPopup({
             title: 'SolarTool1',
@@ -257,14 +262,15 @@ var solarButton1 = ui.createButton({
         })
         menu.show();
         count1++;
-    }
+    },
+    margin: new Thickness(20)
 })
 
 var solarButton2 = ui.createButton({
     row: 0,
     column: 1,
     text: "SolarTool2",
-    isVisible: () => chapter10.isUnlocked,
+    isVisible: () => chapter10.isUnlocked ,
     onClicked: () => {
         let menu = ui.createPopup({
             title: 'SolarTool2',
@@ -276,14 +282,15 @@ var solarButton2 = ui.createButton({
         })
         menu.show();
         count2++;
-    }
+    },
+    margin: new Thickness(20)
 })
 
 var solarButton3 = ui.createButton({
     row: 0,
     column: 2,
     text: "SolarTool3",
-    isVisible: () => chapter10.isUnlocked,
+    isVisible: () => chapter10.isUnlocked ,
     onClicked: () => {
         let menu = ui.createPopup({
             title: 'SolarTool3',
@@ -295,14 +302,15 @@ var solarButton3 = ui.createButton({
         })
         menu.show();
         count3++;
-    }
+    },
+    margin: new Thickness(20)
 })
 
 var solarButton4 = ui.createButton({
     row: 1,
     column: 0,
     text: "SolarTool4",
-    isVisible: () => chapter10.isUnlocked,
+    isVisible: () => chapter10.isUnlocked ,
     onClicked: () => {
         let menu = ui.createPopup({
             title: 'SolarTool4',
@@ -314,14 +322,15 @@ var solarButton4 = ui.createButton({
         })
         menu.show();
         count4++;
-    }
+    },
+    margin: new Thickness(20)
 })
 
 var solarButton5 = ui.createButton({
     row: 1,
     column: 1,
     text: "SolarTool5",
-    isVisible: () => chapter10.isUnlocked,
+    isVisible: () => chapter10.isUnlocked ,
     onClicked: () => {
         let menu = ui.createPopup({
             title: 'SolarTool5',
@@ -333,14 +342,15 @@ var solarButton5 = ui.createButton({
         })
         menu.show();
         count5++;
-    }
+    },
+    margin: new Thickness(20)
 })
 
 var grid = ui.createGrid ({
     columnDefinitions: ['1*','1*','1*'],
     rowDefinitions: ['1*','1*'],
-    columnSpacing: 5,
-    rowSpacing: 5,
+    columnSpacing: 0,
+    rowSpacing: 0,
     children: [solarButton1, solarButton2, solarButton3, solarButton4, solarButton5, playHaxButton]
 })
 var getEquationOverlay = () => grid;
