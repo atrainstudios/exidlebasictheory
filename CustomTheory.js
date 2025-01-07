@@ -115,8 +115,8 @@ var init = () => {
     }
     {
         m4Exp = theory.createMilestoneUpgrade(2, 6);
-        m4Exp.description = Localization.getUpgradeIncCustomExpDesc("tay", "0.0015");
-        m4Exp.info = Localization.getUpgradeIncCustomExpInfo("tay", "0.0015");
+        m4Exp.description = "Increase Tay Exponent";
+        m4Exp.info = "Increases Tay exponent by (level + 1)/1000";
         m4Exp.boughtOrRefunded = (_) => theory.invalidatePrimaryEquation();
     }
     {
@@ -232,7 +232,7 @@ var getPrimaryEquation = () => {
         
         if (m5.level == 0){
             result+="{"
-            result+= getM4Exponent(m4Exp.level).toString(3)
+            result+= getM4Exponent(m4Exp.level).toString(4)
             result+="}"
         }
     return result;
