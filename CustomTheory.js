@@ -26,13 +26,12 @@ case 3: {cost=BigNumber.from("4e1");break}
 case 4: {cost=BigNumber.from("6e1");break}
 case 5: {cost=BigNumber.from("1e2");break}
 case 6: {cost=BigNumber.from("3e2");break}
-case 7: {cost=BigNumber.from("3e2");break}
-case 8: {cost=BigNumber.from("3.4e2");break}
-case 9: {cost=BigNumber.from("3.8e2");break}
-case 10: {cost=BigNumber.from("4.2e2");break}
-case 11: {cost=BigNumber.from("4.6e2");break}
-case 12: {cost=BigNumber.from("5e2");break}
-case 13: {cost=BigNumber.from("5.8e2");break}
+case 7: {cost=BigNumber.from("3.4e2");break}
+case 8: {cost=BigNumber.from("3.8e2");break}
+case 9: {cost=BigNumber.from("4.2e2");break}
+case 10: {cost=BigNumber.from("4.6e2");break}
+case 11: {cost=BigNumber.from("5e2");break}
+case 12: {cost=BigNumber.from("5.8e2");break}
 }
 return cost;
 }
@@ -115,19 +114,13 @@ var init = () => {
         c2Exp.boughtOrRefunded = (_) => theory.invalidatePrimaryEquation();
     }
     {
-        m3Exp = theory.createMilestoneUpgrade(2, 1);
-        m3Exp.description = Localization.getUpgradeIncCustomExpDesc("rao", "0.003");
-        m3Exp.info = Localization.getUpgradeIncCustomExpInfo("rao", "0.003");
-        m3Exp.boughtOrRefunded = (_) => theory.invalidatePrimaryEquation();
-    }
-    {
-        m4Exp = theory.createMilestoneUpgrade(3, 6);
+        m4Exp = theory.createMilestoneUpgrade(2, 6);
         m4Exp.description = Localization.getUpgradeIncCustomExpDesc("tay", "0.0015");
         m4Exp.info = Localization.getUpgradeIncCustomExpInfo("tay", "0.0015");
         m4Exp.boughtOrRefunded = (_) => theory.invalidatePrimaryEquation();
     }
     {
-        m5 = theory.createMilestoneUpgrade(4, 1);
+        m5 = theory.createMilestoneUpgrade(3, 1);
         m5.description = "Unleash C";
         m5.info = "Unleash C (C exponent is 1)";
         m5.boughtOrRefunded = (_) => theory.invalidatePrimaryEquation();
@@ -176,7 +169,7 @@ var init = () => {
     chapter11 = theory.createStoryChapter(10, "But wait... there's more?", "However, one thought still remains in your head.\n You still haven't unleashed the power of C fully. Your friend tay has helped you along the way, but you still aren't anywhere near far enough to unleash the full power of C. \n You decide to continue in hopes that maybe one day you're worthy.", () => currency.value >= BigNumber.from("1e1000"));
     chapter12 = theory.createStoryChapter(11, "Almost There... again", "You have pushed your theory to new limits, reaching e1250 out of your goal of e1000. And you seem to have reached a maximum in the C power. \n This doesn't feel unleashed at all, you think. \n Your friend Tay comes along and lets you know - you are almost there. \n Just wait e200 more, and I will show you the TRUE power of C. You will be ready then. \n You push on.", () => currency.value >= BigNumber.from("1e1250"));
     chapter13 = theory.createStoryChapter(12, "Explosion", "\"You're ready\", Tay says. Your heart races as you await this final moment, one which you have waited for so long. \n \"Just press this button\" he says. \n And you do.", () => currency.value >= BigNumber.from("1e1450"));
-    chapter14 = theory.createStoryChapter(13, "The True Finality", "Everything explodes in front of you. You have reached 1500 in no time. \n But this time, it stops just above 1500. \n \"And for good reason too, you were about to faint\", says Tay. \n \"This is what true C power does to a man. It's too much for any man to handle, mind you, even gods of the universe find it too hard to handle - and yes, I am one of them. So are tai and rao. They wanted you to realize your destiny and you have\", continued Tay\n And just behind you, a silver platter pops up with a title \"Solution to the Riemann Hypothesis - Reveal only when the world is ready\".\n You take it and realize that similar to C-power, some things are too much for the world to handle at the moment, such as the mathematical explosion from the proof. So, you hide it in one of your drawers, hope that people will take ages to find it. \n 42 years later, someone finds it. \n Their name is propfeds.", () => currency.value >= BigNumber.from("1e1500"));
+    chapter14 = theory.createStoryChapter(13, "The True Finality", "Everything explodes in front of you. You have reached 1500 in no time. \n But this time, it stops just above 1500. \n \"And for good reason too, you were about to faint\", says Tay. \n \"This is what true C power does to a man. It's too much for any man to handle, mind you, even gods of the universe find it too hard to handle - and yes, I am one of them. So are tai and rao. They wanted you to realize your destiny and you have\", continued Tay\n And just behind you, a silver platter pops up with a title \"Solution to the Riemann Hypothesis - Reveal only when the world is ready\".\n You take it and realize that similar to C-power, some things are too much for the world to handle at the moment, such as the mathematical explosion from the proof. So, you hide it in one of your drawers, hope that people will take ages to find it. \n 42 years later, someone finds it. \n Their name is Eylanding.", () => currency.value >= BigNumber.from("1e1500"));
 
     //// Story chapters
 
@@ -192,8 +185,7 @@ function d(C){
 
 var updateAvailability = () => {
     c2Exp.isAvailable = c1Exp.level >= 0;
-    m3Exp.isAvailable = c2Exp.level == 3 && c1Exp.level == 3;
-    m4Exp.isAvailable = theory.tau >= BigNumber.from("1e300") && m3Exp.level == 1;
+    m4Exp.isAvailable = theory.tau >= BigNumber.from("1e300");
     m5.isAvailable = m4Exp.level == 6
 }
 
@@ -202,12 +194,12 @@ var tick = (elapsedTime, multiplier) => {
     let bonus = theory.publicationMultiplier;
     if (m5.level == 0) {
         currency.value += dt * bonus * getC1(tai.level).pow(getC1Exponent(c1Exp.level)) *
-                                   getC2(rao.level).pow(getC2Exponent(c2Exp.level)+getM3Exponent(m3Exp.level)) * getC3(C.level).pow(getM4Exponent(m4Exp.level));
+                                   getC2(rao.level).pow(getC2Exponent(c2Exp.level)) * getC3(C.level).pow(getM4Exponent(m4Exp.level));
     }
     else {
         if (theory.tau < BigNumber.from("1e600")){
             currency.value += dt * bonus * getC1(tai.level).pow(getC1Exponent(c1Exp.level)) *
-                                   getC2(rao.level).pow(getC2Exponent(c2Exp.level)+getM3Exponent(m3Exp.level)) * getC3(C.level);
+                                   getC2(rao.level).pow(getC2Exponent(c2Exp.level)) * getC3(C.level);
         }
         else {
             currency.value = BigNumber.from("1e1500")
@@ -229,13 +221,9 @@ var getPrimaryEquation = () => {
     if (c1Exp.level == 3) result += "^{1.24}";
  
     result += "(rao)";
-    if (c2Exp.level == 0 && m3Exp.level == 1) result += "^{1.003}";
-    if (c2Exp.level == 1 && m3Exp.level == 0) result += "^{1.077}";
-    if (c2Exp.level == 1 && m3Exp.level == 1) result += "^{1.08}";
-    if (c2Exp.level == 2 && m3Exp.level == 0) result += "^{1.154}";
-    if (c2Exp.level == 2 && m3Exp.level == 1) result += "^{1.157}";
-    if (c2Exp.level == 3 && m3Exp.level == 0) result += "^{1.231}";
-    if (c2Exp.level == 3 && m3Exp.level == 1) result += "^{1.234}";
+    if (c2Exp.level == 1) result += "^{1.077}";
+    if (c2Exp.level == 2) result += "^{1.154}";
+    if (c2Exp.level == 3) result += "^{1.231}";
 
     if (theory.tau <= BigNumber.from("1e300"))
         result+="+(\\frac{\\int_{0}^{tai*(e^{\\pi  i}+1)} x^{0.01C}dx}{\\frac{d}{dx}(1.71C^{1.7x}|x=rao)})"
@@ -261,8 +249,7 @@ var getC2 = (level) => BigNumber.TWO.pow(level);
 var getC3 = (level) => BigNumber.TEN.pow(level);
 var getC1Exponent = (level) => BigNumber.from(1 + 0.08 * level);
 var getC2Exponent = (level) => BigNumber.from(1 + 0.077 * level);
-var getM3Exponent = (level) => BigNumber.from(0.003 * level);
-var getM4Exponent = (level) => BigNumber.from(0.0015 * level);
+var getM4Exponent = (level) => BigNumber.from( ((level + 1) * (level + 2)/2 - 1) * 0.0001);
 
 init();
 //innit?
