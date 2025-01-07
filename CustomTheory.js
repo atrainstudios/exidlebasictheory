@@ -204,12 +204,12 @@ var tick = (elapsedTime, multiplier) => {
                                    getC2(rao.level).pow(getC2Exponent(c2Exp.level)+getM3Exponent(m3Exp.level)) * getC3(C.level).pow(getM4Exponent(m4Exp.level));
     }
     else {
-        if (currency.value < BigNumber.from("1.01e1500")){
+        if (theory.tau < BigNumber.from("1e600")){
             currency.value += dt * bonus * getC1(tai.level).pow(getC1Exponent(c1Exp.level)) *
                                    getC2(rao.level).pow(getC2Exponent(c2Exp.level)+getM3Exponent(m3Exp.level)) * getC3(C.level);
         }
         else {
-            currency.value += 0
+            currency.value = BigNumber.from("1e1500")
         }
     }
 
