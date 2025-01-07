@@ -192,8 +192,9 @@ function d(C){
 
 var updateAvailability = () => {
     c2Exp.isAvailable = c1Exp.level >= 0;
-    m3Exp.isAvailable = c2Exp.level == 3;
+    m3Exp.isAvailable = c2Exp.level == 3 && c1Exp.level == 3;
     m4Exp.isAvailable = theory.tau >= BigNumber.from("1e300") && m3Exp.level == 1;
+    m5.isAvailable = m4Exp.level == 6
 }
 
 var tick = (elapsedTime, multiplier) => {
