@@ -159,9 +159,10 @@ var init = () => {
     chapter7 = theory.createStoryChapter(6, "Tay", "You get a bit more motivation again for a final push to reach your goal of e1000. But you notice - all your equations for C... it does nothing? \n (If you didn't get the Get Trolled achievement then, you get it now)\n C is useless?\n You ponder as to why this is the case when your other friend Tay knocks at the door. You respond, and he, seeing you looking troubled, asks what's going on. You explain it - and Tay realizes exactly what you must do.\n \"You see, C-power is a universal mathematical power that few know of, but it is very fundamental. While you cannot release all of the power at once, as it will be catastrophic, I will show you how to slowly channel the power, so that you can improve your progress. Maybe if you go far enough, I can show you the true power of C.\"", 
         () => {
         let result = currency.value >= BigNumber.from("1e750");
-        if (result)
+        if (result) {
             theory.invalidatePrimaryEquation();
             d(C)
+        }
         return result});
     chapter8 = theory.createStoryChapter(7, "So close, yet so far", "You're almost there! gogogo, you can do it! Isn't that what your students said to you when you were so close to achieving the goal of seeing if e^bxdt converges or diverges?", () => currency.value > BigNumber.from("1e900"));
     chapter9 = theory.createStoryChapter(8, "Finality Pt 1", "And you reached it. All of a sudden, you see a sight in your eyes: \nAll the equations come together to form a scarily complex one, but then you see something hopping on the side. \nIt's e^(pi*i)+1. And it multiplies the rest of the equation. \nA lot of things appear all of a sudden. You as a child, looking at calculus equations back in 5th grade, then going to high school, becoming an undergraduate student, getting your students, solving the equation, being a professor, retiring, moving to Montreal, seeing your children grow up, and even your grandson, Gilles-Philippe. \nYou then see the Earth forming, the universe expanding from the big bang. But then the future comes into view: \nHumanity dies after a huge disaster shakes them and only a small group of people escape on a ship known as Seedship. They settle down with another civilization. But eventually, both civilizations die. The Sun dies. The sky grows darker as galaxies disappear beyond reach. And the last stars die. The universe grows dark. The last burst of Hawking Radiation from a black hole resonates through the universe, the last light in the universe.", () => currency.value >= BigNumber.from("1e1000"));
@@ -237,7 +238,7 @@ var getPrimaryEquation = () => {
 
     if (theory.tau <= BigNumber.from("1e300"))
         result+="+(\\frac{\\int_{0}^{tai*(e^{\\pi  i}+1)} x^{0.01C}dx}{\\frac{d}{dx}(1.71C^{1.7x}|x=rao)})"
-    else 
+    else {
         result+="(tay)^"
         
         if (m5.level == 0){
@@ -245,6 +246,7 @@ var getPrimaryEquation = () => {
             result+= getM4Exponent(m4Exp.level).toString(4)
             result+="}"
         }
+    }    
     return result;
 }
 
