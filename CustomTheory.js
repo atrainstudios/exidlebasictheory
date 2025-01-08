@@ -183,6 +183,13 @@ function d(C){
     C.getInfo = (amount) => Utils.getMathTo(getInfo2(C.level), getInfo2(C.level + amount));
 }
 
+function d2(C){
+    let getDesc2 = (level) => "C=10^{" + level + "}";
+    let getInfo2 = (level) => "C=" + getC3(level).toString(0);
+    C.getDescription = (_) => Utils.getMath(getDesc2(C.level));
+    C.getInfo = (amount) => Utils.getMathTo(getInfo2(C.level), getInfo2(C.level + amount));
+}
+
 var updateAvailability = () => {
     c2Exp.isAvailable = c1Exp.level >= 0;
     m4Exp.isAvailable = theory.tau >= BigNumber.from("1e300");
@@ -209,6 +216,9 @@ var tick = (elapsedTime, multiplier) => {
     
     if (theory.tau > BigNumber.from("1e300")) {
         d(C)
+    }
+    else {
+        d2(C)
     }
     updateAvailability();
 }
