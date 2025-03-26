@@ -4,9 +4,9 @@ import { BigNumber } from "./api/BigNumber";
 import { theory } from "./api/Theory";
 import { Utils } from "./api/Utils";
 
-var id = "speedyboi";
-var name = "Sped Up BT";
-var description = "BT but sped up for development and testing purposes";
+var id = "ouo";
+var name = "Basic Theory Fast (DEV)";
+var description = "This theory leads to a beautiful conclusion and is based off of the basic starter theory you get when making custom theories. It has a LOT of story chapters but you'll be satisfied in the end :) Gilles rejected this at the start but I want the true meaning of this theory to be known. How simple beginnings can lead to beautiful endings - how even the simplest things have meaning in them.";
 var authors = "invalid-user";
 var version = 4;
 
@@ -122,7 +122,7 @@ var init = () => {
     {
         m5 = theory.createMilestoneUpgrade(3, 1);
         m5.description = "Unleash C";
-        m5.info = "Unleash C (C exponent is 1)";
+        m5.info = "Unleash C (C exponent is greatly increased)";
         m5.boughtOrRefunded = (_) => theory.invalidatePrimaryEquation();
     }
     
@@ -170,7 +170,14 @@ var init = () => {
     chapter11 = theory.createStoryChapter(10, "But wait... there's more?", "However, one thought still remains in your head.\n You still haven't unleashed the power of C fully. Your friend tay has helped you along the way, but you still aren't anywhere near far enough to unleash the full power of C. \n You decide to continue in hopes that maybe one day you're worthy.", () => currency.value >= BigNumber.from("1e1000"));
     chapter12 = theory.createStoryChapter(11, "Almost There... again", "You have pushed your theory to new limits, reaching e1250 out of your goal of e1000. And you seem to have reached a maximum in the C power. \n This doesn't feel unleashed at all, you think. \n Your friend Tay comes along and lets you know - you are almost there. \n Just wait e200 more, and I will show you the TRUE power of C. You will be ready then. \n You push on.", () => currency.value >= BigNumber.from("1e1250"));
     chapter13 = theory.createStoryChapter(12, "Explosion", "\"You're ready\", Tay says. Your heart races as you await this final moment, one which you have waited for so long. \n \"Just press this button\" he says. \n And you do.", () => currency.value >= BigNumber.from("1e1450"));
-    chapter14 = theory.createStoryChapter(13, "The True Finality", "Everything explodes in front of you. You have reached 1500 in no time. \n But this time, it stops just above 1500. \n \"And for good reason too, you were about to faint\", says Tay. \n \"This is what true C power does to a man. It's too much for any man to handle, mind you, even gods of the universe find it too hard to handle - and yes, I am one of them. So are tai and rao. They wanted you to realize your destiny and you have\", continued Tay\n And just behind you, a silver platter pops up with a title \"Solution to the Riemann Hypothesis - Reveal only when the world is ready\".\n You take it and realize that similar to C-power, some things are too much for the world to handle at the moment, such as the mathematical explosion from the proof. So, you hide it in one of your drawers, hope that people will take ages to find it. \n 42 years later, someone finds it. \n Their name is Eylanding.", () => currency.value >= BigNumber.from("1e1500"));
+    chapter14 = theory.createStoryChapter(13, "The True Finality", "Everything explodes in front of you. You have reached 1500 in no time. \n But the rates slow down. \n \"And for good reason too, you were about to faint\", says Tay. \n \"This is what true C power does to a man. It's too much for any man to handle, mind you, even gods of the universe find it too hard to handle - and yes, I am one of them. So are tai and rao. They wanted you to realize your destiny and you have. And as a reward, you get to keep some of the C power you had, but remember - with great power comes great responsibility.\", continued Tay\n And just behind you, a silver platter pops up with a title \"Solution to the Riemann Hypothesis - Reveal only when the world is ready\".\n You take it and realize that similar to C-power, some things are too much for the world to handle at the moment, such as the mathematical explosion from the proof. So, you hide it in one of your drawers, hope that people will take ages to find it. \n 42 years later, someone finds it. \n Their name is Eylanding.", () => {
+        
+        let result = currency.value >= BigNumber.from("1e1500")
+        if (result) {
+            currency.value = BigNumber.from("1e1500")
+            theory.invalidatePrimaryEquation();
+        }
+        return result});
 
     //// Story chapters
 
@@ -210,7 +217,8 @@ var tick = (elapsedTime, multiplier) => {
                                    getC2(rao.level).pow(getC2Exponent(c2Exp.level)) * getC3(C.level) * 1000;
         }
         else {
-            currency.value = BigNumber.from("1e1500")
+            currency.value += dt * bonus * getC1(tai.level).pow(getC1Exponent(c1Exp.level)) *
+                                   getC2(rao.level).pow(getC2Exponent(c2Exp.level)) * getC3(C.level).pow(0.005) * 1000;
         }
     }
 
@@ -225,7 +233,7 @@ var tick = (elapsedTime, multiplier) => {
 }
 
 var getPrimaryEquation = () => {
-    let result = "(\\dot{\\rho} = (tai)";
+    let result = "\\dot{\\rho} = (tai)";
 
     if (c1Exp.level == 1) result += "^{1.08}";
     if (c1Exp.level == 2) result += "^{1.16}";
@@ -243,11 +251,16 @@ var getPrimaryEquation = () => {
         
         if (m5.level == 0){
             result+="{"
-            result+= getM4Exponent(m4Exp.level).toString(4)
+            result+= getM4Exponent(m4Exp.level).toString()
             result+="}"
         }
-    }
-    result+= "*1000)"    
+        if (m5.level == 1 and theory.tau > BigNumber.from("1e600")){
+            let num = 0.005
+            result+="{"
+            result+= num.toString()
+            result+="}"
+        }
+    }    
     return result;
 }
 
