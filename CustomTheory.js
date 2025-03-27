@@ -216,7 +216,7 @@ var tick = (elapsedTime, multiplier) => {
     }
     else {
         currency.value += dt * bonus * getC1(tai.level).pow(getC1Exponent(c1Exp.level)) *
-            getC2(rao.level).pow(getC2Exponent(c2Exp.level)) * getC3(C.level).pow(0.0054);
+            getC2(rao.level).pow(getC2Exponent(c2Exp.level)) * getC3(C.level).pow(0.015);
         
     }
 
@@ -253,7 +253,7 @@ var getPrimaryEquation = () => {
             result+="}"
         }
         if (m5.level == 1){
-            let num = 0.005
+            let num = 0.015
             result+="{"
             result+= num.toString()
             result+="}"
@@ -273,7 +273,7 @@ var getC2 = (level) => BigNumber.TWO.pow(level);
 var getC3 = (level) => BigNumber.TEN.pow(level);
 var getC1Exponent = (level) => BigNumber.from(1 + 0.08 * level);
 var getC2Exponent = (level) => BigNumber.from(1 + 0.077 * level);
-var getM4Exponent = (level) => BigNumber.from( ((level + 1) * (level + 2)/2 - 1) * 0.0001);
+var getM4Exponent = (level) => BigNumber.from( ((level + 1) * (level + 2)/2 - 1) * 0.0003);
 
 init();
 //innit?
